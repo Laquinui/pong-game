@@ -11,7 +11,7 @@ function Canvas({
   draw,
   ...rest
 }: {
-  draw: (context: CanvasRenderingContext2D, count: number) => void
+  draw: (context: CanvasRenderingContext2D) => void
 } & CanvasHTMLAttributes<HTMLCanvasElement>) {
   const ref = useCanvas(draw)
 

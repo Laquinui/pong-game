@@ -6,9 +6,7 @@ import { useEffect, useRef } from 'react'
  * @returns A reference to the canvas element.
  * @example const ref = useCanvas(draw)
  */
-function useCanvas(
-  draw: (context: CanvasRenderingContext2D, count: number) => void,
-) {
+function useCanvas(draw: (context: CanvasRenderingContext2D) => void) {
   const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -17,12 +15,10 @@ function useCanvas(
 
     const context = canvas.getContext('2d')
 
-    let count = 0
     let animationId: number
 
     const renderer = () => {
-      count += 1
-      if (context) draw(context, count)
+      if (context) draw(context)
       animationId = window.requestAnimationFrame(renderer)
     }
 
