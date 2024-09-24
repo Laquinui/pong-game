@@ -1,5 +1,5 @@
-import { PaddlesProps } from './types';
-import useUpdatePaddlePosition from './useUpdatePosition';
+import { PaddlesProps } from './types'
+import useUpdatePaddlePosition from './useUpdatePosition'
 
 function usePaddles({
   leftPosition,

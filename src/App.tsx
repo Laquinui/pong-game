@@ -14,12 +14,12 @@ function App() {
 
   // const [gameRunning, setGameRunning] = useState(false)
 
-  const { leftPaddle, rightPaddle } = usePaddles(
+  const { leftPaddle, rightPaddle } = usePaddles({
     leftPosition,
     rightPosition,
     setLeftPosition,
     setRightPosition,
-  )
+  })
 
   const { ball } = Ball({
     ballPosition,
