@@ -26,6 +26,17 @@ const useUpdatePaddlePosition = ({
           setRightPosition((position) => position + speed)
           break
       }
+
+      setLeftPosition((position) => {
+        if (position < 0) return 0
+        if (position > 450) return 450
+        return position
+      })
+      setRightPosition((position) => {
+        if (position < 0) return 0
+        if (position > 450) return 450
+        return position
+      })
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => {
