@@ -5,38 +5,36 @@ const useUpdatePaddlePosition = ({
   setLeftPosition,
   setRightPosition,
 }: UpdatePaddlePositionProps) => {
+  const speed: number = 10
+
+  const max = (position: number) => {
+    return Math.max(0, position - speed)
+  }
+
+  const min = (position: number) => {
+    return Math.min(450, position + speed)
+  }
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const speed: number = 10
       switch (e.key) {
         case 'w':
           // Go up
-          setLeftPosition((position) => position - speed)
+          setLeftPosition((position) => max(position))
           break
         case 's':
           // Go down
-          setLeftPosition((position) => position + speed)
+          setLeftPosition((position) => min(position))
           break
         case 'ArrowUp':
           // Go up
-          setRightPosition((position) => position - speed)
+          setRightPosition((position) => max(position))
           break
         case 'ArrowDown':
           // Go down
-          setRightPosition((position) => position + speed)
+          setRightPosition((position) => min(position))
           break
       }
-
-      setLeftPosition((position) => {
-        if (position < 0) return 0
-        if (position > 450) return 450
-        return position
-      })
-      setRightPosition((position) => {
-        if (position < 0) return 0
-        if (position > 450) return 450
-        return position
-      })
     }
     window.addEventListener('keydown', handleKeyDown)
     return () => {
