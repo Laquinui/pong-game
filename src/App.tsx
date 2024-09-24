@@ -55,9 +55,9 @@ function App() {
   // }, [])
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col gap-4">
       <h1>Pong Game</h1>
-      <div className="flex w-full flex-wrap justify-between">
+      <div className="mt-8 flex w-full flex-wrap justify-between">
         <div className="flex flex-col">
           <h2>{leftPoints}</h2>
           <span>Player 1</span>
