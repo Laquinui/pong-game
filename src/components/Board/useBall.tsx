@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 function Ball(
   ballPosition: { x: number; y: number },
@@ -7,6 +7,8 @@ function Ball(
   >,
   leftPosition: number,
   rightPosition: number,
+  setLeftPoints: React.Dispatch<React.SetStateAction<number>>,
+  setRightPoints: React.Dispatch<React.SetStateAction<number>>,
 ) {
   const defaultBall = (context: CanvasRenderingContext2D) => {
     const width = 10
@@ -19,7 +21,13 @@ function Ball(
   const ball = (context: CanvasRenderingContext2D) => defaultBall(context)
 
   // Ball position update logic
-  useUpdateBallPosition(setBallPosition, leftPosition, rightPosition)
+  useUpdateBallPosition(
+    setBallPosition,
+    leftPosition,
+    rightPosition,
+    setLeftPoints,
+    setRightPoints,
+  )
 
   return { ball }
 }
@@ -30,6 +38,8 @@ const useUpdateBallPosition = (
   >,
   leftPosition: number,
   rightPosition: number,
+  setLeftPoints: React.Dispatch<React.SetStateAction<number>>,
+  setRightPoints: React.Dispatch<React.SetStateAction<number>>,
 ) => {
   const angle = Math.random() * 2 * Math.PI
   const speed = 3
@@ -39,6 +49,11 @@ const useUpdateBallPosition = (
   })
 
   useEffect(() => {
+    const isHittingWall = {
+      left: false,
+      right: false,
+    }
+
     const interval = setInterval(() => {
       setBallPosition((prevPosition) => {
         let newX = prevPosition.x + ballDirection.x
@@ -63,7 +78,21 @@ const useUpdateBallPosition = (
         }
 
         // Collision with left and right walls
-        if (newX <= 0 || newX + 10 >= 600) {
+        const leftWallHit = newX <= 1
+        const rightWallHit = newX + 10 >= 599
+
+        if (leftWallHit && !isHittingWall.left) {
+          setRightPoints((points) => points + 1)
+          isHittingWall.left = true
+        } else if (rightWallHit && !isHittingWall.right) {
+          setLeftPoints((points) => points + 1)
+          isHittingWall.right = true
+        } else {
+          isHittingWall.left = false
+          isHittingWall.right = false
+        }
+
+        if (leftWallHit || rightWallHit) {
           newX = 300
           newY = 250
           const angle = Math.random() * 2 * Math.PI

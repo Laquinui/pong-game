@@ -8,6 +8,8 @@ function App() {
   const [leftPosition, setLeftPosition] = useState(50)
   const [rightPosition, setRightPosition] = useState(50)
   const [ballPosition, setBallPosition] = useState({ x: 300, y: 250 })
+  const [leftPoints, setLeftPoints] = useState(0)
+  const [rightPoints, setRightPoints] = useState(0)
 
   const { leftPaddle, rightPaddle } = usePaddles(
     leftPosition,
@@ -21,6 +23,8 @@ function App() {
     setBallPosition,
     leftPosition,
     rightPosition,
+    setLeftPoints,
+    setRightPoints,
   )
 
   /**
@@ -41,6 +45,16 @@ function App() {
   return (
     <div className="flex h-full flex-col">
       <h1>Pong Game</h1>
+      <div className="flex w-full flex-wrap justify-between">
+        <div className="flex flex-col">
+          <h2>{leftPoints}</h2>
+          <span>Player 1</span>
+        </div>
+        <div className="flex flex-col">
+          <h2>{rightPoints}</h2>
+          <span>Player 2</span>
+        </div>
+      </div>
       <Canvas draw={animate} height={500} width={600} />
     </div>
   )
