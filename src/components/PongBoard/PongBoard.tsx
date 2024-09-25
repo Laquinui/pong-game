@@ -45,8 +45,6 @@ function PongBoard({
    * @param context - The canvas rendering context.
    */
   const animate = (context: CanvasRenderingContext2D) => {
-    requestAnimationFrame(() => animate(context))
-
     // Clear the canvas
     context.clearRect(0, 0, context.canvas.width, context.canvas.height)
 
