@@ -4,8 +4,6 @@ export interface UpdateBallPositionProps {
   >
   leftPosition: number
   rightPosition: number
-  setLeftPoints: React.Dispatch<React.SetStateAction<number>>
-  setRightPoints: React.Dispatch<React.SetStateAction<number>>
 }
 
 export interface BallProps extends UpdateBallPositionProps {

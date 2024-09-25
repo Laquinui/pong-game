@@ -6,13 +6,9 @@ import usePaddles from '../Paddles/usePaddles'
 function PongBoard({
   width = 600,
   height = 500,
-  setLeftPoints,
-  setRightPoints,
 }: {
   width?: number
   height?: number
-  setLeftPoints: React.Dispatch<React.SetStateAction<number>>
-  setRightPoints: React.Dispatch<React.SetStateAction<number>>
 }) {
   const [leftPosition, setLeftPosition] = useState(50)
   const [rightPosition, setRightPosition] = useState(50)
@@ -32,8 +28,6 @@ function PongBoard({
     setBallPosition,
     leftPosition,
     rightPosition,
-    setLeftPoints,
-    setRightPoints,
   })
 
   const middleLine = (context: CanvasRenderingContext2D) => {

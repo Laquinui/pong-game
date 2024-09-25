@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
+import usePoints from '../../utils/usePoints'
 import { UpdateBallPositionProps } from './types'
 
 const useUpdateBallPosition = ({
   setBallPosition,
   leftPosition,
   rightPosition,
-  setLeftPoints,
-  setRightPoints,
 }: UpdateBallPositionProps) => {
   const angle = Math.random() * 2 * Math.PI
   const speed = 3
@@ -14,6 +13,8 @@ const useUpdateBallPosition = ({
     x: speed * Math.cos(angle),
     y: speed * Math.sin(angle),
   })
+
+  const { increaseLeftPoint, increaseRightPoint } = usePoints()
 
   useEffect(() => {
     const isHittingWall = {
@@ -23,10 +24,10 @@ const useUpdateBallPosition = ({
 
     const countPoints = (leftWallHit: boolean, rightWallHit: boolean) => {
       if (leftWallHit && !isHittingWall.left) {
-        setRightPoints((points) => points + 1)
+        increaseLeftPoint()
         isHittingWall.left = true
       } else if (rightWallHit && !isHittingWall.right) {
-        setLeftPoints((points) => points + 1)
+        increaseRightPoint()
         isHittingWall.right = true
       } else {
         isHittingWall.left = false
@@ -88,8 +89,8 @@ const useUpdateBallPosition = ({
     ballDirection,
     leftPosition,
     rightPosition,
-    setLeftPoints,
-    setRightPoints,
+    increaseLeftPoint,
+    increaseRightPoint,
   ])
 }
 

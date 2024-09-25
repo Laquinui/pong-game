@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import './App.css'
 import PongBoard from './components/PongBoard/PongBoard'
+import usePoints from './utils/usePoints'
 
 function App() {
-  const [leftPoints, setLeftPoints] = useState(0)
-  const [rightPoints, setRightPoints] = useState(0)
+  const { leftPoints, rightPoints } = usePoints()
 
   // useEffect(() => {
   //   const startGame = (event: KeyboardEvent) => {
@@ -27,12 +26,7 @@ function App() {
           <span>Player 2</span>
         </div>
       </div>
-      <PongBoard
-        height={500}
-        width={600}
-        setLeftPoints={setLeftPoints}
-        setRightPoints={setRightPoints}
-      />
+      <PongBoard height={500} width={600} />
     </div>
   )
 }
