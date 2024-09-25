@@ -49,3 +49,20 @@ h3 {
     background-color: #ffffff;
   }
 }
+
+.btn-open-menu {
+  @apply relative cursor-pointer overflow-visible rounded-full border-purple-900 p-2 duration-300 hover:bg-[#ffffff20]
+}
+
+.menu {
+  /* Middle position of close menu button */
+  --btn-x: calc(50% + 280px);
+  --btn-y: 48px;
+
+  @apply absolute right-0 top-0 h-screen w-screen origin-top-right bg-purple-900 duration-700;
+  clip-path: circle(0% at var(--btn-x) var(--btn-y));
+
+  &.show {
+    clip-path: circle(150% at var(--btn-x) var(--btn-y));
+  }
+}
