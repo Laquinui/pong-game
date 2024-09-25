@@ -1,3 +1,7 @@
+import ballDesintegrates from '../../assets/sound_fx/ball_desintegrates.wav';
+
+const ballDesintegratesSound = new Audio(ballDesintegrates)
+
 export const paddleCollision = (
   newX: number,
   newY: number,
@@ -35,6 +39,9 @@ export const wallCollision = (
     const speed = 5
     newDirection.x = speed * Math.cos(angle)
     newDirection.y = speed * Math.sin(angle)
+    ballDesintegratesSound.play()
+    ballDesintegratesSound.volume = 0.2
+    ballDesintegratesSound.currentTime = 0
   }
 
   // Collision with top and bottom walls
