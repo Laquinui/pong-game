@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import usePoints from '../../utils/usePoints'
+import { usePoints } from '../../context/PointsContext'
 import { UpdateBallPositionProps } from './types'
 import { paddleCollision, wallCollision } from './useCollisions'
 
@@ -14,7 +14,7 @@ const useUpdateBallPosition = ({
     x: speed * Math.cos(angle),
     y: speed * Math.sin(angle),
   })
-  const { increaseLeftPoint, increaseRightPoint } = usePoints()
+  const { setLeftPoints, setRightPoints } = usePoints()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -40,8 +40,8 @@ const useUpdateBallPosition = ({
           newY,
           newDirection,
           prevPosition,
-          increaseLeftPoint,
-          increaseRightPoint,
+          setLeftPoints,
+          setRightPoints,
         )
 
         setBallDirection(newDirection)
@@ -55,12 +55,12 @@ const useUpdateBallPosition = ({
 
     return () => clearInterval(interval)
   }, [
-    leftPosition,
-    rightPosition,
     setBallPosition,
     ballDirection,
-    increaseLeftPoint,
-    increaseRightPoint,
+    leftPosition,
+    rightPosition,
+    setLeftPoints,
+    setRightPoints,
   ])
 }
 
