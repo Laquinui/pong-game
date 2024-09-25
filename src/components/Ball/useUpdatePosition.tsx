@@ -20,11 +20,8 @@ const useUpdateBallPosition = ({
 
   // Update points
   useEffect(() => {
-    if (hasPoint.l) {
-      setRightPoints((prev) => prev + 1)
-    } else if (hasPoint.r) {
-      setLeftPoints((prev) => prev + 1)
-    }
+    if (hasPoint.l) setRightPoints((prev) => prev + 1)
+    else if (hasPoint.r) setLeftPoints((prev) => prev + 1)
   }, [hasPoint, setLeftPoints, setRightPoints])
 
   useEffect(() => {
