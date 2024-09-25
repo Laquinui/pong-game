@@ -50,8 +50,9 @@ h3 {
   }
 }
 
-.btn-open-menu {
-  @apply relative cursor-pointer overflow-visible rounded-full border-purple-900 p-2 duration-300 hover:bg-[#ffffff20]
+
+.btn {
+  @apply cursor-pointer flex items-center justify-center text-center rounded-full p-2 duration-300 hover:bg-[#ffffff20]
 }
 
 .menu {

@@ -38,12 +38,14 @@ function Menu({
   return (
     <div className={`menu ${menuOpen ? 'show' : 'hide'}`}>
       <div className="relative mx-auto flex w-[600px] flex-col gap-8 py-8 text-start">
-        <div
-          className="mb-8 ms-auto cursor-pointer rounded-full p-2 duration-300 hover:bg-[#ffffff20]"
+        <button
+          type="button"
+          aria-label="Close settings"
+          className="btn mb-8 ms-auto"
           onClick={() => setMenuOpen(false)}
         >
           <XMarkIcon className="size-6" />
-        </div>
+        </button>
 
         <h2>Settings</h2>
 
