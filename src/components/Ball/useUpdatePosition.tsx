@@ -7,6 +7,7 @@ const useUpdateBallPosition = ({
   setBallPosition,
   leftPosition,
   rightPosition,
+  gameRunning,
 }: UpdateBallPositionProps) => {
   const { setLeftPoints, setRightPoints } = usePoints()
   const [hasPoint, setHasPoint] = useState({ l: false, r: false })
@@ -25,44 +26,51 @@ const useUpdateBallPosition = ({
   }, [hasPoint, setLeftPoints, setRightPoints])
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setBallPosition((prevPosition) => {
-        // Moving the ball in the current direction
-        const newX = prevPosition.x + ballDirection.x
-        const newY = prevPosition.y + ballDirection.y
-        const newDirection = { ...ballDirection }
+    let intervalId: NodeJS.Timeout | null = null
 
-        // Collision with paddles
-        paddleCollision(
-          newX,
-          newY,
-          newDirection,
-          prevPosition,
-          leftPosition,
-          rightPosition,
-        )
+    if (gameRunning)
+      intervalId = setInterval(() => {
+        setBallPosition((prevPosition) => {
+          // Moving the ball in the current direction
+          const newX = prevPosition.x + ballDirection.x
+          const newY = prevPosition.y + ballDirection.y
+          const newDirection = { ...ballDirection }
 
-        // Collision with walls
-        const {
-          hitLeft,
-          hitRight,
-          newX: finalX,
-          newY: finalY,
-        } = wallCollision(newX, newY, newDirection, prevPosition)
+          // Collision with paddles
+          paddleCollision(
+            newX,
+            newY,
+            newDirection,
+            prevPosition,
+            leftPosition,
+            rightPosition,
+          )
 
-        setHasPoint({ l: hitLeft, r: hitRight })
+          // Collision with walls
+          const {
+            hitLeft,
+            hitRight,
+            newX: finalX,
+            newY: finalY,
+          } = wallCollision(newX, newY, newDirection, prevPosition)
 
-        setBallDirection(newDirection)
+          setHasPoint({ l: hitLeft, r: hitRight })
 
-        return {
-          x: finalX,
-          y: finalY,
-        }
-      })
-    }, 16) // Update every 16ms for 60fps
+          setBallDirection(newDirection)
 
-    return () => clearInterval(interval)
-  }, [setBallPosition, ballDirection, leftPosition, rightPosition])
+          return {
+            x: finalX,
+            y: finalY,
+          }
+        })
+      }, 16)
+    // Update every 16ms for 60fps
+    else if (intervalId) clearInterval(intervalId)
+
+    return () => {
+      if (intervalId) clearInterval(intervalId)
+    }
+  }, [setBallPosition, ballDirection, leftPosition, rightPosition, gameRunning])
 }
 
 export default useUpdateBallPosition

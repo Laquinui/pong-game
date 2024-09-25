@@ -18,6 +18,7 @@ function Ball({
   setBallPosition,
   leftPosition,
   rightPosition,
+  gameRunning,
 }: BallProps) {
   const defaultBall = (context: CanvasRenderingContext2D) => {
     const width = 10
@@ -34,6 +35,7 @@ function Ball({
     setBallPosition,
     leftPosition,
     rightPosition,
+    gameRunning,
   })
 
   return { ball }

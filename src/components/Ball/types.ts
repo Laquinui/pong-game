@@ -4,6 +4,7 @@ export interface UpdateBallPositionProps {
   >
   leftPosition: number
   rightPosition: number
+  gameRunning: boolean
 }
 
 export interface BallProps extends UpdateBallPositionProps {

@@ -4,6 +4,7 @@ import { UpdatePaddlePositionProps } from './types'
 const useUpdatePaddlePosition = ({
   setLeftPosition,
   setRightPosition,
+  gameRunning,
 }: UpdatePaddlePositionProps) => {
   const speed: number = 10
 
@@ -14,11 +15,9 @@ const useUpdatePaddlePosition = ({
     (e: KeyboardEvent) => {
       switch (e.key) {
         case 'w':
-          // Go up
           setLeftPosition((position) => max(position))
           break
         case 's':
-          // Go down
           setLeftPosition((position) => min(position))
           break
         case 'ArrowUp':
@@ -33,10 +32,11 @@ const useUpdatePaddlePosition = ({
   )
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
+    if (gameRunning) window.addEventListener('keydown', handleKeyDown)
+    else window.removeEventListener('keydown', handleKeyDown)
 
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [handleKeyDown])
+  }, [handleKeyDown, gameRunning])
 }
 
 export default useUpdatePaddlePosition

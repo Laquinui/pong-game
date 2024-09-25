@@ -6,6 +6,7 @@ function usePaddles({
   rightPosition,
   setLeftPosition,
   setRightPosition,
+  gameRunning,
 }: PaddlesProps) {
   const defaultPaddle = (
     position: { x: number; y: number },
@@ -28,7 +29,7 @@ function usePaddles({
     )
 
   // Paddle position update logic
-  useUpdatePaddlePosition({ setLeftPosition, setRightPosition })
+  useUpdatePaddlePosition({ setLeftPosition, setRightPosition, gameRunning })
 
   return { leftPaddle, rightPaddle }
 }

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRunningGame } from '../../context/RunningGameContext'
 import Ball from '../Ball/useBall'
 import Canvas from '../Canvas'
 import usePaddles from '../Paddles/usePaddles'
@@ -14,13 +15,14 @@ function PongBoard({
   const [rightPosition, setRightPosition] = useState(50)
   const [ballPosition, setBallPosition] = useState({ x: 300, y: 250 })
 
-  // const [gameRunning, setGameRunning] = useState(false)
+  const { gameRunning, setGameRunning } = useRunningGame()
 
   const { leftPaddle, rightPaddle } = usePaddles({
     leftPosition,
     rightPosition,
     setLeftPosition,
     setRightPosition,
+    gameRunning,
   })
 
   const { ball } = Ball({
@@ -28,6 +30,7 @@ function PongBoard({
     setBallPosition,
     leftPosition,
     rightPosition,
+    gameRunning,
   })
 
   const middleLine = (context: CanvasRenderingContext2D) => {
@@ -55,6 +58,20 @@ function PongBoard({
     rightPaddle(context)
     ball(context)
   }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === ' ') {
+        console.log('Space pressed')
+        setGameRunning((running) => !running)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [setGameRunning])
 
   return <Canvas draw={animate} height={height} width={width} />
 }
