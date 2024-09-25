@@ -22,8 +22,6 @@ export const wallCollision = (
   newY: number,
   newDirection: { x: number; y: number },
   prevPosition: { x: number; y: number },
-  setLeftPoints: React.Dispatch<React.SetStateAction<number>>,
-  setRightPoints: React.Dispatch<React.SetStateAction<number>>,
 ) => {
   const hitLeft = newX <= 5
   const hitTop = newY <= 0
@@ -44,15 +42,12 @@ export const wallCollision = (
     newDirection.y = -newDirection.y
     newY = prevPosition.y
   }
-
   // Collision with left and right walls
   if (hitLeft) {
-    setRightPoints((points) => points + 1)
     resetBall()
   } else if (hitRight) {
-    setLeftPoints((points) => points + 1)
     resetBall()
   }
 
-  return { newX, newY }
+  return { newX, newY, hitLeft, hitRight }
 }

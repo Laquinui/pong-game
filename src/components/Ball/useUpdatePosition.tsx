@@ -8,13 +8,24 @@ const useUpdateBallPosition = ({
   leftPosition,
   rightPosition,
 }: UpdateBallPositionProps) => {
+  const { setLeftPoints, setRightPoints } = usePoints()
+  const [hasPoint, setHasPoint] = useState({ l: false, r: false })
+
   const angle = Math.random() * 2 * Math.PI
   const speed = 3
   const [ballDirection, setBallDirection] = useState({
     x: speed * Math.cos(angle),
     y: speed * Math.sin(angle),
   })
-  const { setLeftPoints, setRightPoints } = usePoints()
+
+  // Update points
+  useEffect(() => {
+    if (hasPoint.l) {
+      setRightPoints((prev) => prev + 1)
+    } else if (hasPoint.r) {
+      setLeftPoints((prev) => prev + 1)
+    }
+  }, [hasPoint, setLeftPoints, setRightPoints])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,14 +46,14 @@ const useUpdateBallPosition = ({
         )
 
         // Collision with walls
-        const { newX: finalX, newY: finalY } = wallCollision(
-          newX,
-          newY,
-          newDirection,
-          prevPosition,
-          setLeftPoints,
-          setRightPoints,
-        )
+        const {
+          hitLeft,
+          hitRight,
+          newX: finalX,
+          newY: finalY,
+        } = wallCollision(newX, newY, newDirection, prevPosition)
+
+        setHasPoint({ l: hitLeft, r: hitRight })
 
         setBallDirection(newDirection)
 
@@ -54,14 +65,7 @@ const useUpdateBallPosition = ({
     }, 16) // Update every 16ms for 60fps
 
     return () => clearInterval(interval)
-  }, [
-    setBallPosition,
-    ballDirection,
-    leftPosition,
-    rightPosition,
-    setLeftPoints,
-    setRightPoints,
-  ])
+  }, [setBallPosition, ballDirection, leftPosition, rightPosition])
 }
 
 export default useUpdateBallPosition
