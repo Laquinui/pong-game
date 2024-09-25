@@ -13,7 +13,7 @@ function PongBoard({
 }) {
   const [leftPosition, setLeftPosition] = useState(50)
   const [rightPosition, setRightPosition] = useState(50)
-  const [ballPosition, setBallPosition] = useState({ x: 300, y: 250 })
+  const [ballPosition, setBallPosition] = useState({ x: 295, y: 245 })
 
   const { gameRunning, setGameRunning } = useRunningGame()
 
