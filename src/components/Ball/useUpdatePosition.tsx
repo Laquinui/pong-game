@@ -13,7 +13,7 @@ const useUpdateBallPosition = ({
   const [hasPoint, setHasPoint] = useState({ l: false, r: false })
 
   const angle = Math.random() * 2 * Math.PI
-  const speed = 3
+  const speed = 5
   const [ballDirection, setBallDirection] = useState({
     x: speed * Math.cos(angle),
     y: speed * Math.sin(angle),

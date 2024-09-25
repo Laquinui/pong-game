@@ -32,7 +32,7 @@ export const wallCollision = (
     newX = 300
     newY = 250
     const angle = Math.random() * 2 * Math.PI
-    const speed = 3
+    const speed = 5
     newDirection.x = speed * Math.cos(angle)
     newDirection.y = speed * Math.sin(angle)
   }
