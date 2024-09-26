@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Pong Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a remake of the classic Atari Pong Game from 1972 using React, TypeScript and Tailwind.
 
-Currently, two official plugins are available:
+## Controls
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Player 1: W and S
+- Player 2: Up and Down arrows
 
-## Expanding the ESLint configuration
+## How to run locally
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Clone this repository to you computer
+- Install the dependencies with
+  ```
+  yarn i
+  ```
+- Run the project with
+  ```
+  yarn dev
+  ```
+- And have fun!
 
-- Configure the top-level `parserOptions` property like this:
+## Incoming features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Play against bot
+  - Increase difficult at each 5 points
+- Choose where the ball will start in the board
+- Choose color themes
+- Reset the game points
+- New musics to be choosen!!
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Current problems to be fixed
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Velocity and animations of the paddles
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Developer notes
+
+This game was made to improve my front-end skills, learn how to develop a project with Vite and have fun in the process
+
+The music and sound effects were made by me and are copyrighted, please do not sell it or use for any commercial reason
+
+I hope you have a good time with the game!
