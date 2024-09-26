@@ -60,7 +60,7 @@ h3 {
   --btn-x: calc(50% + 280px);
   --btn-y: 48px;
 
-  @apply absolute right-0 top-0 h-screen w-screen origin-top-right bg-indigo-900 duration-700;
+  @apply absolute right-0 top-0 h-[105vh] w-screen origin-top-right bg-indigo-900 duration-700;
   clip-path: circle(0% at var(--btn-x) var(--btn-y));
 
   &.show {
