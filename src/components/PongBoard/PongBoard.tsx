@@ -68,6 +68,7 @@ function PongBoard({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === ' ') {
+        e.preventDefault()
         console.log('Space pressed')
         setGameRunning((running) => !running)
       }
