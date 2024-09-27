@@ -41,7 +41,7 @@ function Menu({
 
   return (
     <div className={`menu ${menuOpen ? 'show' : 'hide'}`}>
-      <div className="relative mx-auto flex w-[600px] flex-col gap-10 py-8 text-start">
+      <div className="relative mx-auto flex w-[600px] flex-col gap-8 pt-8 text-start">
         <button
           type="button"
           aria-label="Close settings"

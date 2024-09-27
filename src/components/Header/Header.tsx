@@ -15,7 +15,7 @@ function Header() {
         Press Space to play
       </span>
 
-      <div className="mt-8 flex w-full flex-wrap justify-between">
+      <div className="mt-6 flex w-full flex-wrap justify-between">
         <div className="flex flex-col">
           <h2>{leftPoints}</h2>
           <span>Player 1</span>
