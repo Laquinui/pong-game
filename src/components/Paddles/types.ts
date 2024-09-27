@@ -1,6 +1,7 @@
 export interface UpdatePaddlePositionProps {
   setLeftPosition: React.Dispatch<React.SetStateAction<number>>
   setRightPosition: React.Dispatch<React.SetStateAction<number>>
+  boardHeight: number
   gameRunning: boolean
 }
 

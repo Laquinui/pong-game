@@ -4,6 +4,8 @@ export interface UpdateBallPositionProps {
   >
   leftPosition: number
   rightPosition: number
+  boardHeight: number
+  boardWidth: number
   gameRunning: boolean
 }
 

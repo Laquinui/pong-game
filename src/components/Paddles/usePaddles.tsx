@@ -1,11 +1,12 @@
-import { PaddlesProps } from './types'
-import useUpdatePaddlePosition from './useUpdatePosition'
+import { PaddlesProps } from './types';
+import useUpdatePaddlePosition from './useUpdatePosition';
 
 function usePaddles({
   leftPosition,
   rightPosition,
   setLeftPosition,
   setRightPosition,
+  boardHeight,
   gameRunning,
 }: PaddlesProps) {
   const defaultPaddle = (
@@ -29,7 +30,12 @@ function usePaddles({
     )
 
   // Paddle position update logic
-  useUpdatePaddlePosition({ setLeftPosition, setRightPosition, gameRunning })
+  useUpdatePaddlePosition({
+    setLeftPosition,
+    setRightPosition,
+    boardHeight,
+    gameRunning,
+  })
 
   return { leftPaddle, rightPaddle }
 }

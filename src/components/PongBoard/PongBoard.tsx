@@ -6,14 +6,17 @@ import usePaddles from '../Paddles/usePaddles'
 
 function PongBoard({
   width = 600,
-  height = 500,
+  height = 400,
 }: {
   width?: number
   height?: number
 }) {
-  const [leftPosition, setLeftPosition] = useState(50)
-  const [rightPosition, setRightPosition] = useState(50)
-  const [ballPosition, setBallPosition] = useState({ x: 295, y: 245 })
+  const [leftPosition, setLeftPosition] = useState(height / 2 - 25)
+  const [rightPosition, setRightPosition] = useState(height / 2 - 25)
+  const [ballPosition, setBallPosition] = useState({
+    x: width / 2 - 5,
+    y: height / 2 - 5,
+  })
 
   const { gameRunning, setGameRunning } = useRunningGame()
 
@@ -22,6 +25,7 @@ function PongBoard({
     rightPosition,
     setLeftPosition,
     setRightPosition,
+    boardHeight: height,
     gameRunning,
   })
 
@@ -30,6 +34,8 @@ function PongBoard({
     setBallPosition,
     leftPosition,
     rightPosition,
+    boardHeight: height,
+    boardWidth: width,
     gameRunning,
   })
 

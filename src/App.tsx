@@ -13,7 +13,7 @@ function App() {
         <div className="flex h-full flex-col gap-4">
           <Navbar />
           <Header />
-          <PongBoard height={500} width={600} />
+          <PongBoard />
           <Footer />
         </div>
       </PointsProvider>

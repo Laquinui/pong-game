@@ -26,15 +26,19 @@ export const wallCollision = (
   newY: number,
   newDirection: { x: number; y: number },
   prevPosition: { x: number; y: number },
+  boardHeight: number,
+  boardWidth: number,
 ) => {
   const hitLeft = newX <= 5
   const hitTop = newY <= 0
-  const hitRight = newX + 10 >= 595
-  const hitBottom = newY + 10 >= 500
+  const hitRight = newX + 10 >= boardWidth - 5
+  const hitBottom = newY + 10 >= boardHeight
 
   const resetBall = () => {
-    newX = 300
-    newY = 250
+    newX = boardWidth / 2 - 5
+    newY = boardHeight / 2 - 5
+
+    console.log(newX, newY)
     const angle = Math.random() * 2 * Math.PI
     const speed = 5
     newDirection.x = speed * Math.cos(angle)

@@ -4,12 +4,19 @@ import { UpdatePaddlePositionProps } from './types'
 const useUpdatePaddlePosition = ({
   setLeftPosition,
   setRightPosition,
+  boardHeight,
   gameRunning,
 }: UpdatePaddlePositionProps) => {
   const speed: number = 10
 
-  const max = (position: number) => Math.max(0, position - 1 * speed)
-  const min = (position: number) => Math.min(450, position + 1 * speed)
+  const max = useCallback(
+    (position: number) => Math.max(0, position - 1 * speed),
+    [],
+  )
+  const min = useCallback(
+    (position: number) => Math.min(boardHeight - 50, position + 1 * speed),
+    [boardHeight],
+  )
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -21,14 +28,16 @@ const useUpdatePaddlePosition = ({
           setLeftPosition((position) => min(position))
           break
         case 'ArrowUp':
+          e.preventDefault()
           setRightPosition((position) => max(position))
           break
         case 'ArrowDown':
+          e.preventDefault()
           setRightPosition((position) => min(position))
           break
       }
     },
-    [setLeftPosition, setRightPosition],
+    [setLeftPosition, setRightPosition, max, min],
   )
 
   useEffect(() => {

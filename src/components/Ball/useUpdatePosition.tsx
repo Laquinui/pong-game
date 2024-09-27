@@ -8,6 +8,8 @@ const useUpdateBallPosition = ({
   leftPosition,
   rightPosition,
   gameRunning,
+  boardHeight,
+  boardWidth,
 }: UpdateBallPositionProps) => {
   const { setLeftPoints, setRightPoints } = usePoints()
   const [hasPoint, setHasPoint] = useState({ l: false, r: false })
@@ -52,7 +54,14 @@ const useUpdateBallPosition = ({
             hitRight,
             newX: finalX,
             newY: finalY,
-          } = wallCollision(newX, newY, newDirection, prevPosition)
+          } = wallCollision(
+            newX,
+            newY,
+            newDirection,
+            prevPosition,
+            boardHeight,
+            boardWidth,
+          )
 
           setHasPoint({ l: hitLeft, r: hitRight })
 
@@ -70,7 +79,15 @@ const useUpdateBallPosition = ({
     return () => {
       if (intervalId) clearInterval(intervalId)
     }
-  }, [setBallPosition, ballDirection, leftPosition, rightPosition, gameRunning])
+  }, [
+    setBallPosition,
+    ballDirection,
+    leftPosition,
+    rightPosition,
+    gameRunning,
+    boardHeight,
+    boardWidth,
+  ])
 }
 
 export default useUpdateBallPosition

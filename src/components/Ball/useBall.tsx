@@ -18,6 +18,8 @@ function Ball({
   setBallPosition,
   leftPosition,
   rightPosition,
+  boardHeight,
+  boardWidth,
   gameRunning,
 }: BallProps) {
   const defaultBall = (context: CanvasRenderingContext2D) => {
@@ -35,6 +37,8 @@ function Ball({
     setBallPosition,
     leftPosition,
     rightPosition,
+    boardHeight,
+    boardWidth,
     gameRunning,
   })
 
